@@ -1,5 +1,9 @@
 package xpathLocator;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class XPathCase6 {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, AWTException {
 		System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 		WebDriver driver=new ChromeDriver();
 		
@@ -18,7 +22,10 @@ public class XPathCase6 {
 		driver.findElement(By.xpath("//button[contains(text(),'✕')]")).click();
 		
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//input[contains(@name,'q')]")).sendKeys("Hp Laptop" ,Keys.ENTER);
+		driver.findElement(By.xpath("//input[contains(@name,'q')]")).sendKeys("Hp Laptop");
+		 Robot robot = new Robot();
+		 robot.keyPress(KeyEvent.VK_ENTER);
+		 robot.keyRelease(KeyEvent.VK_ENTER);
 		
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//span[text()='Filters']")).click();
